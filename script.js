@@ -21,7 +21,7 @@ function showSuccess(input) {
 
 // Check email is valid
 function isValidEmail(email) {
-    const re = "^[w-.]+@([w-]+.)+[w-]{2,4}$";
+    const re = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return re.test(String(email).toLowerCase());
 }
 
@@ -39,5 +39,19 @@ form.addEventListener('submit', function(e) {
         showError(email, 'Email is required');
     } else if (!isValidEmail(email.value)) {
         showError(email, 'Email is not valid')
-    } else showSuccess(email);
+    } else {
+        showSuccess(email);
+    }
+
+    if (password.value === '') {
+        showError(password, 'Password is required.');
+    } else {
+        showSuccess(password);
+    }
+
+        if (password2.value === '') {
+        showError(password2, 'Password2 is required.');
+    } else {
+        showSuccess(password2);
+    }
 });
